@@ -12,7 +12,30 @@ async function getGroqChatCompletion() {
         messages: [
             {
                 role: "user",
-                content: " [The teaching is good , The Teaching is bad , Need to improve] categories positive and negative feedbacks in this array of data"
+                content:`[The teaching is good , The Teaching is bad , Need to improve, The Teaching is worse , The staff is booring , The lessons are not fully completed] 
+                This is a list which contains the feedback of the teaching of the teachers in the school.
+                i need the response in a way where map the each teedback with the category of that feedback
+                in a json format
+
+                [
+                    {
+                        "feedback": "The teaching is good",
+                        "category": "Good",
+                        "action":"",
+                    },
+                    {
+                        "feedback": "The Teaching is bad",
+                        "category": "Bad",
+                        "action":""
+                    },
+                    {
+                        "feedback": "Need to improve",
+                        "category": "Improvement",
+                        "action":""
+                    }
+                ]
+                there is no need for explanation not even instructions, just give the response in the json format with key names data
+                recommend the action to be taken for the feedback in the action key `
             }
         ],
         model: "llama3-8b-8192"
