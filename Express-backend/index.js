@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
+const userRouter = require('./routes/userRoutes')
 
 
 const app = express()
@@ -16,7 +17,7 @@ dotenv.config('./env')
 app.listen(5000,()=>{
     console.log('Server is running on port 5000')
 })
-
+app.use('/users',userRouter)
 try{
   const connect = async()=>{
     await mongoose.connect(process.env.MONGO_URI)
