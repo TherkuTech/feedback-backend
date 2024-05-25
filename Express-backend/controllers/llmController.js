@@ -1,7 +1,5 @@
 const {main} = require('../utils/llm');
 
-
-
 const categoriesFeedback =  async (req,res) =>{
     var data = req.body.data;
     var prompt = `This is a list which contains the feedback of the teaching of the teachers in the school.
