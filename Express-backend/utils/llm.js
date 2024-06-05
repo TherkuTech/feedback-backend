@@ -4,6 +4,8 @@ const groq = new Groq({
     apiKey: "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"
 });
 
+
+
 async function main(data , prompt) {
     const chatCompletion = await getGroqChatCompletion(data, prompt);
     return chatCompletion.choices[0]?.message?.content || "";

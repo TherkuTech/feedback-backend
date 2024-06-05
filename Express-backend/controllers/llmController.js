@@ -38,4 +38,5 @@ const categoriesFeedback =  async (req,res) =>{
     }
 }
 
+
 module.exports = {categoriesFeedback}

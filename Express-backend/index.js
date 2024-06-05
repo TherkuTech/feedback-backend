@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const userRouter = require('./routes/userRoutes')
 const llmRouter = require('./routes/llmRoutes')
+const feedRouter = require('./routes/feedRoutes')
 
 const app = express()
 
@@ -21,6 +22,8 @@ dotenv.config('./env')
 app.use('/users',userRouter)
 
 app.use('/llm',llmRouter)
+
+app.use('/feeds',feedRouter)
 
 try{
   const connect = async()=>{
