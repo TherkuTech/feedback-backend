@@ -1,7 +1,5 @@
 const {main} = require('../utils/llm');
 
-
-
 const categoriesFeedback =  async (req,res) =>{
     var data = req.body.data;
     var prompt = `This is a list which contains the feedback of the teaching of the teachers in the school.
@@ -39,5 +37,6 @@ const categoriesFeedback =  async (req,res) =>{
         return res.status(500).json({status:"failed", message:err.message});
     }
 }
+
 
 module.exports = {categoriesFeedback}
