@@ -15,6 +15,12 @@ const feedbackSchema = new mongoose.Schema({
 })
 
 const analysedfeedSchema = new mongoose.Schema({
+    user:{
+        type:String,
+    },
+    feedback_name : {
+        type:String,
+    },
     feedbacks : [feedbackSchema]
 }) 
 

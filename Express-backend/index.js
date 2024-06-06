@@ -1,23 +1,25 @@
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const dotenv = require('dotenv')
+dotenv.config('./env')
 const mongoose = require('mongoose')
 const userRouter = require('./routes/userRoutes')
 const llmRouter = require('./routes/llmRoutes')
 const feedRouter = require('./routes/feedRoutes')
-
+// const bodyParser = require("body-parser")
 const app = express()
 
 app.use(express.json())
 
-app.use(cors({
+app.use(cors({  
   origin: 'http://localhost:5173'
 }))
 
 app.use(bodyParser.json())
 
-dotenv.config('./env')
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/users',userRouter)
 
