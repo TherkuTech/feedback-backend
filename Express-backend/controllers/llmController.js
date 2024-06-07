@@ -39,4 +39,40 @@ const categoriesFeedback =  async (req,res) =>{
 }
 
 
-module.exports = {categoriesFeedback}
+const feedbackQuery = async (req, res) => {
+    const data = JSON.stringify(req.body.data);
+    console.log(req.body.prompt);
+
+    const prompt = `${req.body.prompt} 
+    Based on the given list of feedback data, please provide an accurate and concise answer to the question below in a simple 
+    and professional manner.If the answer cannot be determined from the provided data, respond with "Unable to get the answer".Don't
+    use any question or 'wh' words in it just give me your analysis and response alone give me well punctuated in a professional and clear manner 
+    hence i just understand clearly as if im 10 years old
+    Please answer the following question:
+    ${req.body.prompt}
+
+    Note: Focus on the feedback, category, and action from each object to provide a precise answer.`;
+
+    try {
+        const chatCompletion = await main(data, prompt);
+        console.log(chatCompletion);
+        const cleanString = (str) => {
+            const cleaned = str.replace(/[^\w\s.,]|_/g, "").replace(/\s+/g, " ").trim();            return cleaned;
+        };
+        const cleanedString = cleanString(chatCompletion);
+        try {
+            const parsedData = cleanedString;
+            if (!parsedData) return res.status(200).json({ error: true, message: err.message });
+            return res.status(200).json({ error:false, message: parsedData });
+        } catch (parseError) {
+            console.error("Parsing error: ", parseError.message);
+            return res.status(200).json({ error:true , message:err.message });
+        }
+    } catch (err) {
+        return res.status(200).json({ error:true , message: err.message });
+    }
+};
+
+
+
+module.exports = {categoriesFeedback , feedbackQuery}
