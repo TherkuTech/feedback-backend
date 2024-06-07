@@ -49,4 +49,20 @@ const getAfeedback = async (req,res) =>{
     }   
 }
 
-module.exports = { addFeedbacks, getUserFeedbacks , getAfeedback };
+
+const deleteFeedback = async (req, res) => {
+    const { name } = req.query;
+    try {
+        const result = await Feeds.deleteOne({ name: name });
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ error: true, message: "Feedback not found" });
+        }
+        return res.status(200).json({ error: false, message: "Feedback deleted successfully" });
+    } catch (err) {
+        console.log(err.message);
+        return res.status(500).json({ error: true, message: err.message });
+    }
+}
+
+
+module.exports = { addFeedbacks, getUserFeedbacks , getAfeedback,deleteFeedback };
