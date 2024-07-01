@@ -13,9 +13,7 @@ const app = express()
 
 app.use(express.json())
 
-
 app.use(cors());
-
 
 app.use(bodyParser.json())
 
@@ -37,10 +35,9 @@ try{
    console.log(err.message)
 }
 
-app.get('/',(req,res)=>{
-   res.send("Hey welcome to feedworks");
+app.get('/',(req, res)=>{
+    res.status(200).json("hello world")
 })
-
 app.listen(process.env.PORT , () => {
   console.log('Server is running on port 5000')
 })
