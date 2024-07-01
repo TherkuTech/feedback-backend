@@ -37,7 +37,7 @@ try{
    console.log(err.message)
 }
 
-app.use('/',()=>{
+app.get('/',(req,res)=>{
    res.send("Hey welcome to feedworks");
 })
 
